@@ -1,0 +1,31 @@
+#include <ESP32Servo.h>
+
+Servo myservo;
+int servoPin = 2;  // Physical pin labeled '2'
+
+void setup() {
+  Serial.begin(115200); 
+  myservo.setPeriodHertz(50);
+  myservo.attach(servoPin, 500, 2400); 
+  Serial.println("System Starting");
+  Serial.print("Enter angle between 0 and 180: ");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    int angle = Serial.parseInt();
+    angle = angle - 15;
+    if (angle >= -15 && angle <= 165) 
+    {
+      Serial.println(angle + 15);
+      myservo.write(angle);
+      Serial.print("Enter angle between 0 and 180: ");
+    }
+    else
+    {
+      Serial.println();
+      Serial.println("Invalid Input. Please input an angle between 0 and 180 degrees.");
+      Serial.print("Enter angle between 0 and 180: ");
+    }
+  }
+}  
