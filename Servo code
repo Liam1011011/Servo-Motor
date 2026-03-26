@@ -5,8 +5,8 @@ int servoPin = 2;
 
 void setup() {
   Serial.begin(115200); 
-  myservo.setPeriodHertz(50);
-  myservo.attach(servoPin, 500, 2400); 
+  myservo.setPeriodHertz(50); // PWM signal frequency for ESP32
+  myservo.attach(servoPin, 500, 2400); // pulse width range for ESP32 (500 to 2400 us)
   Serial.println("System Starting");
   Serial.print("Enter an angle between 0 and 165: ");
 }
